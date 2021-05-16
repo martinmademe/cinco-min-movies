@@ -1,23 +1,23 @@
-import React from 'react';
-import {
-  Button,
-  StyleSheet,
-  Text,
-  useColorScheme,
-} from 'react-native';
+import React, { useState } from 'react';
+import { Button } from 'react-native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Layout from 'app/components/Layout'
+import Search from 'app/components/Search'
+import Terms from 'app/components/Terms'
+import List from 'app/components/List'
+
+import MOCK from 'app/mock.json'
+// import { API_KEY, POSTER_URL } from '@env'
 
 const HomeScreen = ({ navigation }) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const textColorStyle = isDarkMode ? Colors.light : Colors.dark
+  const [searchText, setSearchText] = useState(null)
 
   return (
     <Layout>
-      <Text style={[styles.copy, { color: textColorStyle }]}>
-        Home Screen
-      </Text>
+      <Search setSearchText={setSearchText} />
+      <Terms text={searchText} />
+      <List data={MOCK.results} />
+
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
@@ -25,13 +25,5 @@ const HomeScreen = ({ navigation }) => {
     </Layout>
   );
 }
-
-const styles = StyleSheet.create({
-  copy: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  }
-});
 
 export default HomeScreen;

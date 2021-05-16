@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   StyleSheet,
   Text,
-  useColorScheme,
 } from 'react-native';
+import { AppContext } from 'app/store';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Layout from 'app/components/Layout'
 
-const DetailScreen = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  const textColorStyle = isDarkMode ? Colors.light : Colors.dark
+const DetailScreen = ({ route }) => {
+  const { itemId } = route.params;
+  const { state: { searchData } } = useContext(AppContext);
+
+  const result = searchData.filter(each => each.id === itemId)[0]
 
   return (
     <Layout>
       <Text style={[styles.copy, { color: textColorStyle }]}>
         Detail Screen
+        {itemId}
+        {result.overview}
       </Text>
     </Layout>
   );

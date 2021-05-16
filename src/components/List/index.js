@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 // ToDo. Move this up the tree...
 import { POSTER_URL } from '@env'
@@ -11,22 +12,29 @@ const styles = StyleSheet.create({
   },
 });
 
-const ListItem = ({ item }) => (
-  <View>
-    <Text>{item.title}</Text>
-    <Image
-      style={styles.logo}
-      source={{ uri: `${POSTER_URL}/${item.poster_path}` }}
-    />
-  </View>
-);
 
-const List = ({ data }) => (
-  <FlatList
-    data={data}
-    renderItem={ListItem}
-    keyExtractor={item => item.id}
-  />
-)
+const List = ({ data }) => {
+  const navigation = useNavigation();
+
+  const ListItem = ({ item }) => (
+    <View>
+      <Text>{item.title}</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Details', { itemId: item.id })}>
+        <Image
+          style={styles.logo}
+          source={{ uri: `${POSTER_URL}/${item.poster_path}` }}
+        />
+      </TouchableOpacity>
+    </View >
+  )
+
+  return (
+    <FlatList
+      data={data}
+      renderItem={ListItem}
+      keyExtractor={item => item.id}
+    />
+  )
+}
 
 export default List;

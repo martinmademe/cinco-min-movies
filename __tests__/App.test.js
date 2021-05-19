@@ -2,7 +2,11 @@ import 'react-native';
 import 'react-native-gesture-handler/jestSetup';
 
 import React from 'react';
-import { render, fireEvent, cleanup } from '@testing-library/react-native';
+import {
+  render,
+  fireEvent,
+  cleanup
+} from '@testing-library/react-native';
 
 import * as RESPONSE from './mockResponse.json'
 

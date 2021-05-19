@@ -1,35 +1,30 @@
-import React, { useContext } from 'react';
-import {
-  StyleSheet,
-  Text,
-} from 'react-native';
-import { AppContext } from 'app/store';
+import React, { useState, useEffect } from 'react';
+import { Text } from 'react-native';
+import { useAppState } from 'app/store';
 
-import Layout from 'app/components/Layout'
+import Layout from 'app/components/Layout';
 
 const DetailScreen = ({ route }) => {
   const { itemId } = route.params;
-  const { state: { searchData } } = useContext(AppContext);
+  const appState = useAppState();
+  const [detail, setDetails] = useState(null);
 
-  const result = searchData.filter(each => each.id === itemId)[0]
+  useEffect(() => {
+    if (!itemId) return;
+
+    const filterResults = appState.searchData.filter(each => each.id === itemId)[0];
+    setDetails(filterResults);
+  }, [itemId]);
 
   return (
     <Layout>
-      <Text style={[styles.copy, { color: textColorStyle }]}>
+      <Text testID={'detail-view'}>
         Detail Screen
-        {itemId}
-        {result.overview}
+        {itemId && itemId}
+        {detail && detail.overview}
       </Text>
     </Layout>
   );
 }
-
-const styles = StyleSheet.create({
-  copy: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  }
-});
 
 export default DetailScreen;

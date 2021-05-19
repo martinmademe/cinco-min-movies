@@ -1,49 +1,51 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useContext, useEffect } from 'react';
+
+const AppStateContext = createContext()
+const AppDispatchContext = createContext()
 
 const INITIAL_STATE = {
   isLoading: false,
   error: false,
-  searchData: null
-};
-const AppReducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_LOADING_STATE': {
-      return {
-        ...state,
-        isLoading: action.payload
-      };
-    }
-    case 'SET_SEARCH_DATA': {
-      return {
-        ...state,
-        searchData: action.payload,
-        isLoading: false
-      };
-    }
-    case 'SET_ERROR': {
-      return {
-        ...state,
-        error: action.payload,
-      };
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action}`);
-    }
-  }
+  searchData: null,
 };
 
-export const AppContext = createContext({ state: INITIAL_STATE, });
+const AppReducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCHING':
+      return { ...state, isLoading: true };
+    case 'FETCHED':
+      return { ...state, isLoading: false, searchData: action.payload };
+    case 'FETCH_ERROR':
+      return { ...state, isLoading: false, error: true };
+    default:
+      return state;
+  }
+}
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, INITIAL_STATE);
 
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AppContext.Provider>
-  );
-};
+    <AppStateContext.Provider value={state}>
+      <AppDispatchContext.Provider value={dispatch}>
+        {children}
+      </AppDispatchContext.Provider>
+    </AppStateContext.Provider>
+  )
+}
 
-export default AppProvider;
+const useAppState = () => useContext(AppStateContext)
+const useAppDispatch = () => useContext(AppDispatchContext)
 
+const fetchMovies = async (dispatch, url) => {
+  dispatch({ type: 'FETCHING' });
+  try {
+    let response = await fetch(url);
+    let data = await response.json();
+    dispatch({ type: 'FETCHED', payload: data.results });
+  } catch (error) {
+    dispatch({ type: 'FETCH_ERROR' });
+  }
+}
 
+export { AppProvider, useAppState, useAppDispatch, fetchMovies }

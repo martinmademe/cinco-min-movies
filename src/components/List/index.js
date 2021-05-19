@@ -1,9 +1,16 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // ToDo. Move this up the tree...
-import { POSTER_URL } from '@env'
+import { POSTER_URL } from '@env';
 
 const styles = StyleSheet.create({
   logo: {
@@ -12,14 +19,16 @@ const styles = StyleSheet.create({
   },
 });
 
-
 const List = ({ data }) => {
   const navigation = useNavigation();
 
   const ListItem = ({ item }) => (
-    <View>
+    <View testID={'list-item'}>
       <Text>{item.title}</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Details', { itemId: item.id })}>
+      <TouchableOpacity
+        testID={item.id.toString()}
+        onPress={() => navigation.navigate('Details', { itemId: item.id })}
+      >
         <Image
           style={styles.logo}
           source={{ uri: `${POSTER_URL}/${item.poster_path}` }}

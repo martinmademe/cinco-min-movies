@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   useColorScheme,
   View,
@@ -18,14 +17,14 @@ const Layout = ({ children }) => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior='never'
-        style={backgroundStyle}
-      >
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          {children}
-        </View>
-      </ScrollView>
+      <View style={{
+        // flex: 1,
+        // height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}>
+        {children}
+      </View>
     </SafeAreaView>
   )
 }

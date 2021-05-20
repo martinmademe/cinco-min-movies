@@ -17,6 +17,8 @@ const AppReducer = (state, action) => {
       return { ...state, isLoading: false, searchData: action.payload };
     case 'FETCH_ERROR':
       return { ...state, isLoading: false, error: true };
+    case 'RESET':
+      return { ...INITIAL_STATE };
     default:
       return state;
   }

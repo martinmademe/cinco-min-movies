@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     height: '100%',
     alignItems: 'center',
+    padding: 16
   },
 });
 

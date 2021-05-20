@@ -11,10 +11,16 @@ const Search = ({
 
   const styles = StyleSheet.create({
     search: {
-      color: colors.text,
-      fontSize: 20,
       flexGrow: 1,
-      alignItems: 'center',
+      alignSelf: 'flex-start',
+      height: 40,
+      maxHeight: 40,
+      fontSize: 16,
+      color: colors.text,
+      textAlign: 'center',
+      borderBottomColor: colors.text,
+      borderBottomWidth: 1,
+      width: '100%',
     },
   });
 
@@ -24,9 +30,10 @@ const Search = ({
       placeholder={placeholderText}
       onChangeText={searchText => setSearchText(searchText)}
       defaultValue={searchText}
-      color={colors.text}
       style={styles.search}
       clearTextOnFocus
+      placeholderTextColor={colors.text}
+      autoFocus
     />
   )
 };

@@ -24,7 +24,7 @@ const Router = () => {
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator screenOptions={options}>
-        <Stack.Screen name="mo5ies" component={HomeScreen} />
+        <Stack.Screen name="moVies" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>

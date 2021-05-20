@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Text } from 'react-native';
 
 import { useAppState, useAppDispatch, fetchMovies } from 'app/store';
 import { getUrl } from 'app/utils'

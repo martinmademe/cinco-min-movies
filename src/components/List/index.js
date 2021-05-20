@@ -20,29 +20,44 @@ const List = ({ data }) => {
   const { colors } = useTheme();
 
   const styles = StyleSheet.create({
-    logo: {
-      width: 100,
-      height: 100,
+    list: {
+      flex: 1
     },
-  });
-
-
-  const ListItem = ({ item }) => (
-    <View testID={'list-item'} style={{
+    list__item: {
       height: windowHeight / 2,
       width: windowWidth - 32,
       justifyContent: "center",
       alignItems: "center",
-    }}>
+    },
+    list__image: {
+      width: windowWidth - 32,
+      height: windowHeight - 124
+    },
+    list__text: {
+      position: 'absolute',
+      bottom: 0,
+      paddingVertical: 16,
+      width: '100%',
+      textAlign: 'center',
+      fontWeight: 'bold',
+      fontSize: 16,
+      backgroundColor: colors.text,
+      color: colors.background
+    }
+  });
+
+
+  const ListItem = ({ item }) => (
+    <View testID={'list-item'} style={styles.list__item}>
       <TouchableOpacity
         testID={item.id.toString()}
         onPress={() => navigation.navigate('Details', { itemId: item.id })}
       >
         <Image
-          style={{ width: windowWidth - 32, height: windowHeight - 124 }}
+          style={styles.list__image}
           source={{ uri: `${POSTER_URL}/${item.poster_path}` }}
         />
-        <Text style={{ position: 'absolute', bottom: 0, paddingVertical: 16, width: '100%', textAlign: 'center', fontWeight: 'bold', fontSize: 16, backgroundColor: colors.text, color: colors.background }}>{item.title}</Text>
+        <Text style={styles.list__text}>{item.title}</Text>
       </TouchableOpacity>
     </View >
   )
@@ -53,7 +68,7 @@ const List = ({ data }) => {
       renderItem={ListItem}
       keyExtractor={item => item.id}
       horizontal
-      style={{ flex: 1 }}
+      style={styles.list}
       pagingEnabled={true}
       showsHorizontalScrollIndicator={false}
     />

@@ -6,7 +6,7 @@ import { getUrl } from 'app/utils'
 import Layout from 'app/components/Layout';
 import Search from 'app/components/Search';
 import List from 'app/components/List';
-import AppModal from 'app/components/AppModal';
+import ErrorModal from 'app/components/ErrorModal';
 import AppButton from 'app/components/AppButton';
 
 const HomeScreen = () => {
@@ -39,11 +39,12 @@ const HomeScreen = () => {
         title={'SEARCH'}
         onPress={() => handleSearch()}
       />
-      <AppModal
-        modalVisible={showModal}
-        handleModalClose={() => handleModalClose()}
-        copy={'Whoops!'}
-      />
+      {showModal &&
+        <ErrorModal
+          modalVisible={showModal}
+          handleModalClose={() => handleModalClose()}
+          copy={'Whoops!'}
+        />}
     </Layout >
   );
 };

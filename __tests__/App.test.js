@@ -44,17 +44,18 @@ describe('App', () => {
     expect(onChangeTextMock).toHaveBeenCalledWith('a film');
   })
 
-  test('&& a query returns a list of items...', async () => {
+  test('&& a query returns a list of items...', async (done) => {
     const { getByTestId, findAllByTestId } = render(<App />);
 
     const button = getByTestId('button');
     fireEvent(button, 'press');
+    done();
 
     const listItems = await findAllByTestId('list-item');
     expect(listItems).toHaveLength(3);
   })
 
-  test('|| a query returns an error...', async () => {
+  test('|| a query returns an error...', async (done) => {
     // Make fetch -> catch
     fetch.mockImplementationOnce(() => Promise.reject());
 
@@ -62,19 +63,22 @@ describe('App', () => {
 
     const button = getByTestId('button');
     fireEvent(button, 'press');
+    done();
 
     const error = await findByTestId('error');
     expect(error).toBeTruthy();
   })
 
-  test('&& clicking a list item takes you to the detail page', async () => {
+  test('&& clicking a list item takes you to the detail page', async (done) => {
     const { getByTestId, findByTestId } = render(<App />);
 
     const button = getByTestId('button');
     fireEvent(button, 'press');
+    done();
 
     const item = await findByTestId('299534');
     fireEvent(item, 'press');
+    done();
 
     const detailView = await getByTestId('detail-view');
     expect(detailView).toBeTruthy();

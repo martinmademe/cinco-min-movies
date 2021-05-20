@@ -5,7 +5,7 @@ import { useTheme } from '@react-navigation/native';
 import Layout from 'app/components/Layout'
 import AppButton from 'app/components/AppButton';
 
-const AppModal = ({ modalVisible, handleModalClose, copy }) => {
+const ErrorModal = ({ modalVisible, handleModalClose, copy }) => {
   const { colors } = useTheme();
 
   const styles = StyleSheet.create({
@@ -26,10 +26,11 @@ const AppModal = ({ modalVisible, handleModalClose, copy }) => {
       animationType="slide"
       visible={modalVisible}
       onRequestClose={handleModalClose}
+      testID='error'
     >
       <Layout>
         <View style={styles.container}>
-          <Text testID='error' style={styles.copy}>
+          <Text style={styles.copy}>
             {copy}
           </Text>
         </View>
@@ -42,4 +43,4 @@ const AppModal = ({ modalVisible, handleModalClose, copy }) => {
   )
 }
 
-export default AppModal;
+export default ErrorModal;

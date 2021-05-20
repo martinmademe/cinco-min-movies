@@ -16,8 +16,18 @@ const Layout = ({ children }) => {
     ? 'dark-content'
     : 'light-content'
 
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: colors.background,
+      flexGrow: 1,
+      height: '100%',
+      alignItems: 'center',
+      padding: 16
+    },
+  });
+
   return (
-    <SafeAreaView style={colors.background}>
+    <SafeAreaView>
       <StatusBar barStyle={statusBarStyle} />
       <View style={styles.container}>
         {children}
@@ -25,14 +35,5 @@ const Layout = ({ children }) => {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    height: '100%',
-    alignItems: 'center',
-    padding: 16
-  },
-});
 
 export default Layout;

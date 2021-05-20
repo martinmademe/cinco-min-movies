@@ -43,10 +43,9 @@ const HomeScreen = () => {
       <AppModal
         modalVisible={showModal}
         handleModalClose={() => handleModalClose()}
-      >
-        <Text testID='error'>Whoops</Text>
-      </AppModal>
-    </Layout>
+        copy={'Whoops!'}
+      />
+    </Layout >
   );
 };
 

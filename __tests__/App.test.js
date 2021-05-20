@@ -16,7 +16,7 @@ jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
 global.fetch = jest.fn(() =>
   Promise.resolve({
     json: () => Promise.resolve(RESPONSE),
-  }),
+  })
 );
 
 // Clean up after each test to avoid errors
@@ -33,9 +33,7 @@ describe('App', () => {
   test('&& the search updates when i type a query...', () => {
     const SEARCH_TERM = 'a film';
     const onChangeTextMock = jest.fn();
-    const { getByTestId } = render(
-      <Search setSearchText={onChangeTextMock} searchText={SEARCH_TERM} />,
-    );
+    const { getByTestId } = render(<Search setSearchText={onChangeTextMock} searchText={SEARCH_TERM} />);
 
     fireEvent.changeText(getByTestId('search-box'), SEARCH_TERM);
     expect(onChangeTextMock).toHaveBeenCalledWith('a film');

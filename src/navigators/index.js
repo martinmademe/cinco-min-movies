@@ -1,10 +1,6 @@
 import React from 'react';
 import { useColorScheme } from 'react-native';
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from 'app/screens/Home';
@@ -16,7 +12,7 @@ const options = {
   headerTitleStyle: {
     fontWeight: 'bold',
   },
-}
+};
 
 const Router = () => {
   const scheme = useColorScheme();
@@ -28,7 +24,7 @@ const Router = () => {
         <Stack.Screen name="Details" component={DetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 };
 
 export default Router;

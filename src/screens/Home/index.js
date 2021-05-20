@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useAppState, useAppDispatch, fetchMovies } from 'app/store';
-import { getUrl } from 'app/utils'
+import { getUrl } from 'app/utils';
 
 import Layout from 'app/components/Layout';
 import Search from 'app/components/Search';
@@ -17,35 +17,29 @@ const HomeScreen = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleModalClose = () => {
-    appDispatch({ type: 'RESET' })
-    setShowModal(false)
-  }
+    appDispatch({ type: 'RESET' });
+    setShowModal(false);
+  };
 
   const handleSearch = () => {
     if (!searchText) return;
-    fetchMovies(appDispatch, getUrl(searchText))
-  }
+    fetchMovies(appDispatch, getUrl(searchText));
+  };
 
   useEffect(() => {
     if (!appState.error) return;
     appState.error && setShowModal(true);
-  }, [appState.error])
+  }, [appState.error]);
 
   return (
     <Layout>
       <Search setSearchText={setSearchText} />
       <List data={appState.searchData} />
-      <AppButton
-        title={'SEARCH'}
-        onPress={() => handleSearch()}
-      />
-      {showModal &&
-        <ErrorModal
-          modalVisible={showModal}
-          handleModalClose={() => handleModalClose()}
-          copy={'Whoops!'}
-        />}
-    </Layout >
+      <AppButton title={'SEARCH'} onPress={() => handleSearch()} />
+      {showModal && (
+        <ErrorModal modalVisible={showModal} handleModalClose={() => handleModalClose()} copy={'Whoops!'} />
+      )}
+    </Layout>
   );
 };
 

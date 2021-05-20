@@ -2,11 +2,7 @@ import React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
-const Search = ({
-  searchText,
-  setSearchText,
-  placeholderText = 'What shall we look up?',
-}) => {
+const Search = ({ searchText, setSearchText, placeholderText = 'What shall we look up?' }) => {
   const { colors } = useTheme();
 
   const styles = StyleSheet.create({
@@ -21,7 +17,7 @@ const Search = ({
       borderBottomColor: colors.text,
       borderBottomWidth: 1,
       width: '100%',
-      marginBottom: 16
+      marginBottom: 16,
     },
   });
 
@@ -29,14 +25,14 @@ const Search = ({
     <TextInput
       testID={'search-box'}
       placeholder={placeholderText}
-      onChangeText={searchText => setSearchText(searchText)}
+      onChangeText={(text) => setSearchText(text)}
       defaultValue={searchText}
       style={styles.search}
       clearTextOnFocus
       placeholderTextColor={colors.text}
       autoFocus
     />
-  )
+  );
 };
 
 export default Search;

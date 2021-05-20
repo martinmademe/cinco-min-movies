@@ -18,7 +18,6 @@ const DetailScreen = ({ route }) => {
       fontSize: 32,
       fontWeight: 'bold',
       paddingVertical: 16,
-
     },
     copy__body: {
       width: '100%',
@@ -29,39 +28,33 @@ const DetailScreen = ({ route }) => {
     copy__subheading: {
       color: colors.text,
       fontWeight: 'bold',
-      textAlign: 'left'
+      textAlign: 'left',
     },
   });
 
   useEffect(() => {
     if (!itemId) return;
 
-    const filterResults = appState.searchData.filter(each => each.id === itemId)[0];
+    const filterResults = appState.searchData.filter((each) => each.id === itemId)[0];
     setDetails(filterResults);
-  }, [itemId]);
+  }, [itemId, appState.searchData]);
 
   return (
     <Layout>
       <Text testID={'detail-view'} style={styles.copy__heading}>
         {detail ? detail.title : 'Film Details'}
       </Text>
+      <Text style={styles.copy__body}>{detail && detail.overview}</Text>
       <Text style={styles.copy__body}>
-        {detail && detail.overview}
-      </Text>
-      <Text style={styles.copy__body}>
-        <Text style={styles.copy__subheading}>
-          Release date:{' '}
-        </Text>
+        <Text style={styles.copy__subheading}>Release date: </Text>
         {detail && detail.release_date}
       </Text>
       <Text style={styles.copy__body}>
-        <Text style={styles.copy__subheading}>
-          Average rating:{' '}
-        </Text>
+        <Text style={styles.copy__subheading}>Average rating: </Text>
         {detail && detail.vote_average}
       </Text>
     </Layout>
   );
-}
+};
 
 export default DetailScreen;

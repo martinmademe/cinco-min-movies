@@ -1,7 +1,7 @@
 import React, { createContext, useReducer, useContext } from 'react';
 
-const AppStateContext = createContext()
-const AppDispatchContext = createContext()
+const AppStateContext = createContext();
+const AppDispatchContext = createContext();
 
 const INITIAL_STATE = {
   isLoading: false,
@@ -22,22 +22,20 @@ const AppReducer = (state, action) => {
     default:
       return state;
   }
-}
+};
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, INITIAL_STATE);
 
   return (
     <AppStateContext.Provider value={state}>
-      <AppDispatchContext.Provider value={dispatch}>
-        {children}
-      </AppDispatchContext.Provider>
+      <AppDispatchContext.Provider value={dispatch}>{children}</AppDispatchContext.Provider>
     </AppStateContext.Provider>
-  )
-}
+  );
+};
 
-const useAppState = () => useContext(AppStateContext)
-const useAppDispatch = () => useContext(AppDispatchContext)
+const useAppState = () => useContext(AppStateContext);
+const useAppDispatch = () => useContext(AppDispatchContext);
 
 const fetchMovies = async (dispatch, url) => {
   dispatch({ type: 'FETCHING' });
@@ -48,6 +46,6 @@ const fetchMovies = async (dispatch, url) => {
   } catch (error) {
     dispatch({ type: 'FETCH_ERROR' });
   }
-}
+};
 
-export { AppProvider, useAppState, useAppDispatch, fetchMovies }
+export { AppProvider, useAppState, useAppDispatch, fetchMovies };

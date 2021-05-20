@@ -12,25 +12,19 @@ const AppButton = ({ title, onPress }) => {
       width: '100%',
       paddingVertical: 16,
       borderRadius: 4,
-      alignSelf: 'flex-end'
+      alignSelf: 'flex-end',
     },
     buttton__text: {
       color: colors.background,
-      textAlign: 'center'
-    }
+      textAlign: 'center',
+    },
   });
 
   return (
-    <TouchableOpacity
-      testID={'button'}
-      onPress={onPress}
-      style={styles.button}
-    >
-      <Text style={styles.buttton__text} >
-        {title}
-      </Text>
+    <TouchableOpacity testID={'button'} onPress={onPress} style={styles.button}>
+      <Text style={styles.buttton__text}>{title}</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 export default AppButton;

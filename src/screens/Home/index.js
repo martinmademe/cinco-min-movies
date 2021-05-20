@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Text } from 'react-native';
-import { useTheme } from '@react-navigation/native';
 
 import { useAppState, useAppDispatch, fetchMovies } from 'app/store';
 import { getUrl } from 'app/utils'
@@ -14,7 +13,6 @@ import AppButton from 'app/components/AppButton';
 const HomeScreen = () => {
   const appDispatch = useAppDispatch();
   const appState = useAppState();
-  const { colors } = useTheme();
 
   const [searchText, setSearchText] = useState(null);
   const [showModal, setShowModal] = useState(false);

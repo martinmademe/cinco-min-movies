@@ -11,7 +11,6 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@react-navigation/native';
 
-// ToDo. Move this up the tree...
 import { POSTER_URL } from '@env';
 
 const List = ({ data }) => {

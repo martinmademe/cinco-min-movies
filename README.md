@@ -44,6 +44,10 @@ It also gives me a spec for what I will need to test:
 
 Wherever possible I try to avoid too many packages, and opt for web Api's (eg fetch), or default react (eg. context).
 
+`react-native` folder structures can be a bit noisy, so I tend to move the app code into `./src` (also brings developer experience consistency for people coming for `react`).
+
+ 
+
 # Documentation
 This is a living doc. It details how we're building the front-end / UI. Things will change as we go, but that's OK.
 

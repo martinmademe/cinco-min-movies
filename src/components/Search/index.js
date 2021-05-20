@@ -21,6 +21,7 @@ const Search = ({
       borderBottomColor: colors.text,
       borderBottomWidth: 1,
       width: '100%',
+      marginBottom: 16
     },
   });
 
